@@ -1,4 +1,4 @@
-# 基于Clean Architecture的Go框架Togo
+# Togo
 
 这是一个基于Clean-Architecture的Go框架实现，Clean Architecture是Robert C. Martin提出的一种业务领域分层的方法论，文章参考[https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
 
@@ -70,9 +70,40 @@ project                  应用部署目录
 
 ## 使用说明
 
+真机运行:
+
 ```shell
+//拷贝 config.yaml.example 为 config.yaml
+//修改 config.yaml 的 mysql_dsn 数据库配置项
+//运行
 go run main.go
 ```
+
+Dockerfile:
+
+```bash
+//先启用mysql,此处使用docker方式运行
+docker run --name mysql_togo -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8
+//修改 config.yaml.example 为 config.yaml
+//修改 config 的 mysql_dsn
+
+//构建镜像
+docker build -t togo/togo:v1 .
+//运行容器 PATH为项目目录 expose_port为本机曝露(转发)端口
+docker run -d -v PATH:/Project -p expose_port:5000 --name togo_app togo/togo:v1
+```
+
+Docker-compose:
+
+```bash
+//构建
+docker-compose build --no-cache
+//启动
+docker-compose start
+//注意:请修改 config.yaml 的 mysql_dsn HOST为 "mysql_c" 字符串
+```
+
+访问: host:5000
 
 ## 分层测试
 
