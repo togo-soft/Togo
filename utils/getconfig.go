@@ -14,9 +14,11 @@ type E struct {
 
 //请手动添加结构来实现yaml的解析
 type Environments struct {
-	Debug    bool   `yaml:"debug"`     //是否开启debug模式
-	Server   string `yaml:"server"`    //服务运行的host:port
-	MysqlDSN string `yaml:"mysql_dsn"` //MySQL数据库连接的DSN
+	Debug         bool   `yaml:"debug"`    //是否开启debug模式
+	Server        string `yaml:"server"`   //服务运行的host:port
+	DatabaseType  string `yaml:"db_type"`  //数据库类型
+	DSN           string `yaml:"dsn"`      //数据库连接的源名称
+	DatabaseDebug bool   `yaml:"db_debug"` //开启数据库debug模式
 }
 
 func GetConfig() *E {
