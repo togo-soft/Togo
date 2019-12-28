@@ -1,82 +1,51 @@
 package handler
 
 import (
-	"Togo/models"
-	"Togo/usecases"
-	"fmt"
 	"github.com/gin-gonic/gin"
-	"strconv"
+	"Togo/usecases"
 )
 
-//用户用例
-var UserCS = usecases.NewUser()
+//uuc user use case
+var uuc = usecases.NewUserUC()
 
-//查看用户信息
-func UserInfo(this *gin.Context) {
-	var user = &models.User{}
-	fmt.Println("当前查询的id:", this.Query("id"))
-	id, _ := strconv.Atoi(this.Query("id"))
-	user = UserCS.FetchUser(id)
-	this.JSON(200, gin.H{
-		"message": user,
-	})
+//用户-注册
+func Signup(this *gin.Context) {
+	this.JSON(uuc.Signup(this))
 }
 
-//创建用户
-func CreateUser(this *gin.Context) {
-	var user = &models.User{}
-	err := this.Bind(user)
-	fmt.Println("获取输入信息", user)
-	if err != nil {
-		this.JSON(200, gin.H{
-			"message": err,
-		})
-		return
-	}
-	if UserCS.CreateUser(user) {
-		this.JSON(200, gin.H{
-			"message": "创建成功",
-		})
-	} else {
-		this.JSON(200, gin.H{
-			"message": "创建失败",
-		})
-	}
+//用户-登陆
+func Signin(this *gin.Context)  {
+	this.JSON(uuc.Signin(this))
+}
+
+//用户-退出
+func Logout(this *gin.Context)  {
+	this.JSON(uuc.Logout(this))
+}
+
+//用户-个人中心
+func Profile(this *gin.Context)  {
+	this.JSON(uuc.Profile(this))
+}
+
+
+//查看用户信息
+func FindOne(this *gin.Context) {
+	this.JSON(uuc.FindOne(this))
+}
+
+//查看用户列表
+func FindMany(this *gin.Context) {
+	r := uuc.FindMany(this)
+	this.JSON(r.Code, r)
 }
 
 //删除用户
-func DeleteUser(this *gin.Context) {
-	fmt.Println("删除的id:", this.Query("id"))
-	id, _ := strconv.Atoi(this.Query("id"))
-	if err := UserCS.DeleteUser(id); err == nil {
-		this.JSON(200, gin.H{
-			"message": "删除成功",
-		})
-	} else {
-		this.JSON(200, gin.H{
-			"message": err,
-		})
-	}
+func Cancellation(this *gin.Context) {
+	this.JSON(uuc.Cancellation(this))
 }
 
 //修改用户
-func UpdateUser(this *gin.Context) {
-	var user = &models.User{}
-	err := this.Bind(user)
-	fmt.Println("获取需要修改的信息", user)
-	if err != nil || user.ID == 0 {
-		this.JSON(200, gin.H{
-			"message": "参数错误",
-		})
-		return
-	}
-	if err := UserCS.UpdateUser(user); err != nil {
-		this.JSON(200, gin.H{
-			"message": err,
-		})
-	} else {
-		this.JSON(200, gin.H{
-			"message": "修改成功",
-		})
-	}
+func ModifyInformation(this *gin.Context) {
+	this.JSON(uuc.ModifyInformation(this))
 }
