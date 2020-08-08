@@ -3,7 +3,7 @@ package usecases
 import (
 	"Togo/middleware"
 	"Togo/models"
-	"Togo/repositories"
+	"Togo/repos"
 	"Togo/utils"
 	"crypto/sha256"
 	"encoding/hex"
@@ -15,7 +15,7 @@ type UserUC struct {
 }
 
 // ur 是仓库存储层的一个实例
-var ur = repositories.NewUserRepo()
+var ur = repos.NewUserRepo()
 
 // NewUserUC 会返回实例层用户模块的实例
 func NewUserUC() UserInterface {
