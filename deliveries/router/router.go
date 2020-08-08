@@ -1,10 +1,10 @@
 package router
 
 import (
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
 	"Togo/deliveries/handler"
 	"Togo/middleware"
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 	"time"
 )
 

@@ -1,13 +1,13 @@
 package usecases
 
 import (
+	"Togo/middleware"
+	"Togo/models"
+	"Togo/repositories"
+	"Togo/utils"
 	"crypto/sha256"
 	"encoding/hex"
 	"github.com/gin-gonic/gin"
-	"server/middleware"
-	"server/models"
-	"server/repositories"
-	"server/utils"
 )
 
 // UserUC 是用户实例层的一个结构 用来实现用户接口 UserInterface

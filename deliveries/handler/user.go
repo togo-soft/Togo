@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/gin-gonic/gin"
 	"Togo/usecases"
+	"github.com/gin-gonic/gin"
 )
 
 //uuc user use case

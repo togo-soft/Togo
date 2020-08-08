@@ -1,10 +1,10 @@
 package middleware
 
 import (
+	"Togo/utils"
 	"errors"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"server/utils"
 	"strings"
 	"time"
 )

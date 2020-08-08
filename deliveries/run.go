@@ -1,9 +1,9 @@
 package deliveries
 
 import (
-	"github.com/gin-gonic/gin"
 	r "Togo/deliveries/router"
 	"Togo/utils"
+	"github.com/gin-gonic/gin"
 )
 
 func Run() {
