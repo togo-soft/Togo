@@ -1,7 +1,7 @@
-package router
+package gateway
 
 import (
-	"Togo/deliveries/handler"
+	"Togo/gateway/handler"
 	"Togo/middleware"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"

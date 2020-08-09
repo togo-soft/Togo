@@ -1,14 +1,13 @@
-package deliveries
+package gateway
 
 import (
-	r "Togo/deliveries/router"
 	"Togo/utils"
 	"github.com/gin-gonic/gin"
 )
 
 func Run() {
 	var conf = utils.GetConfig()
-	var router = r.Router()
+	var router = Router()
 	//测试路由
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{

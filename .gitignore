@@ -4,4 +4,5 @@ go.sum
 config.yaml
 Togo
 Togo.exe
-APP.png
+gen.exe
+gen
